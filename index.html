@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	<title>Goodreads app</title>
+</head>
+<body>
+	<h1>BOOK GETTER WEBSITE!!!!</h1>
+	<h4>Enter in book title here:</h4>
+	<div id="app">
+		<input type="text" v-model = "bookTitle">
+		<input id="numberSubmit1" type="Submit" v-on:click = "getBookTitle"></input>
+		<div v-if= "loading">
+			<h2>loading...</h2>
+		</div>
+		<div v-else>
+			<div v-for="data in allBooks">
+				<h2>{{data.title}}</h2>
+				<h3>{{data.author_name}}</h3>
+				<h2>{{data.first_publish_year}}</h2>
+				<p>Star to favorite!</p>
+				<img v-bind:src="data.starImage" v-bind:class = "{favorite: data.starImage}" v-on:click="starMouseClick(data)" id = "starImage">
+			</div>
+		</div>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./script.js"></script>
+</html>
